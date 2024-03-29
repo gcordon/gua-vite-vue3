@@ -4,11 +4,40 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "------说明-----运行项目需要的版本": "node:18.16.1 pnpm:8.15.5 ",
+    "------说明-----检测node版本": "",
+    "triggerNode": "node triggerNode.js",
+    "------说明-----安装依赖": "",
+    "bootstrap": "pnpm install",
+    "------说明-----运行程序": "",
+    "dev": "cross-env VITE_PROJECT_NAME=magfic & vite",
+    "------说明-----编译程序": "https://cn.vitejs.dev/guide/env-and-mode.html",
+    "build": "vue-tsc vite build",
+    "build:development": "vue-tsc && NODE_ENV=development vite build --mode development --outDir dist",
+    "build:staging": "vue-tsc && NODE_ENV=staging     vite build --mode staging     --outDir dist",
+    "build:production": "vue-tsc && NODE_ENV=production  vite build --mode production  --outDir dist",
+    "------说明-----在线查看编译后的程序": "",
+    "preview:development": "pnpm build:development && vite preview --port 6677",
+    "------说明-----重装依赖，会清除旧程序包、缓存数据": "",
+    "reinstall": "rimraf pnpm-lock.yaml && rimraf package.lock.json && rimraf node_modules && npm run bootstrap",
+    "------说明-----运行该命令会在指定的目录（dist）上启动一个 HTTP 服务器，该服务器具有启用的 CORS 支持、GZIP 压缩以及禁用的缓存控制。这将使你能够通过浏览器或其他 HTTP 客户端访问和下载这个目录中的静态文件。": "",
+    "test:gzip": "npx http-server dist --cors --gzip -c-1"
   },
   "dependencies": {
+    "@vitejs/plugin-vue-jsx": "^3.1.0",
+    "@vueuse/core": "^10.9.0",
+    "commitizen": "^4.3.0",
+    "cross-env": "^7.0.3",
+    "eruda": "^3.0.1",
+    "file-loader": "^6.2.0",
+    "glob": "^10.3.10",
+    "picocolors": "^1.0.0",
+    "postcss": "^8.4.38",
+    "postcss-px-to-viewport": "^1.1.1",
+    "rimraf": "^5.0.5",
+    "rollup-plugin-replace": "^2.2.0",
+    "vite-plugin-copy": "^0.1.6",
+    "vite-plugin-remote-assets": "^0.4.1",
     "vue": "^3.3.11",
     "vue-i18n": "^9.9.0",
     "vue-router": "^4.0.13"
@@ -16,8 +45,18 @@
   "devDependencies": {
     "@types/node": "^20.11.16",
     "@vitejs/plugin-vue": "^4.5.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "sass": "^1.72.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
-    "vue-tsc": "^1.8.25"
+    "vite-plugin-vue-devtools": "^7.0.16",
+    "vite-plugin-windicss": "^1.9.3",
+    "vue-tsc": "^1.8.25",
+    "windicss": "^3.5.6"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
